@@ -1,0 +1,38 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+    background-color: rosybrown;
+    
+}
+
+#sketch{
+    display:flex;
+    flex-wrap:wrap;
+    width: 450px;
+    max-height:450px;
+    background-color:rosybrown;
+    
+
+}
+.grid-block{
+    background-color:white;
+    
+    display:inline-flex;
+    transition: all 0s ease 100000s;
+    
+}
+.grid-block:hover{
+    background-color:black;
+    transition-delay:0s;
+    visibility: visible;
+}
+.borders{
+    border: 1px solid black;
+}
