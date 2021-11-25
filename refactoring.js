@@ -1,16 +1,20 @@
 const sketch = document.querySelector('#sketch')
 const colorButtons = document.querySelectorAll('.color-choice');
 const clearButton = document.getElementById('clearButton');
+const userColorSelector = document.getElementById('color-select')
+const sliderLabel = document.getElementById('slider-label');
+const slider = document.getElementById('slider');
 let size = parseInt(window.getComputedStyle(sketch).width, 10);
 
-let color = 'black';
-gridSize = 20;
+let color = 'rgb(44,44,44)';
+gridSize = 16;
 
 
 function resetGrid(){
     sketch.innerHTML = '';
-    createGrid(gridSize)
+    createGrid(gridSize);
 }
+
 
 
 function createGrid(gridSize){
@@ -22,12 +26,14 @@ function createGrid(gridSize){
         block.style.backgroundColor = 'rgb(255,255,255)';
         block.style.width = `${(size/gridSize)}px`
         block.style.height = `${(size/gridSize)}px`
-
+        
         sketch.appendChild(block);
         
     }
+    
     const gridBlocks = sketch.querySelectorAll('.grid-block');
-    gridBlocks.forEach(gridBlock => gridBlock.addEventListener('mouseover', gridColor));
+    
+    gridBlocks.forEach(gridBlock => gridBlock.addEventListener('mouseenter', gridColor));
     
     
 
@@ -47,7 +53,7 @@ function gridColor(){
             break;
         case 'shade':
             const rgbLArray = (this.style.backgroundColor.replace(/ /g, '').slice(4,-1).split(','));
-            this.style.backgroundColor = `rgb(${rgbLArray[0] - (rgbLArray[0] * 0.2)},${rgbLArray[1] - (rgbLArray[1] * 0.2)},${rgbLArray[2] - (rgbLArray[2] * 0.2)})`;
+            this.style.backgroundColor = `rgb(${rgbLArray[0] - (rgbLArray[0] * 0.10)},${rgbLArray[1] - (rgbLArray[1] * 0.10)},${rgbLArray[2] - (rgbLArray[2] * 0.10)})`;
             break;
         case 'darken':
             const rgbDArray = (this.style.backgroundColor.replace(/ /g, '').slice(4,-1).split(','));
@@ -85,6 +91,17 @@ function changeColor(event){
 function userSelection(event){
     color = event.target.value;
 }
+function changeLabelSlider(event){
+    sliderLabel.textContent = `${event.target.value} X ${event.target.value}`;
+}
+function makeNewGrid(event){
+    gridSize = event.target.value;
+    resetGrid(gridSize);
+    return gridSize;
+}
+
+
+
 
 createGrid(16);
 
@@ -92,8 +109,10 @@ createGrid(16);
 
 colorButtons.forEach(colorButton => colorButton.addEventListener('click', changeColor) );
 clearButton.addEventListener('click', resetGrid);
-
-
+userColorSelector.addEventListener('change', userSelection);
+userColorSelector.addEventListener('input', userSelection);
+slider.addEventListener('mouseup', changeLabelSlider);
+slider.addEventListener('mouseup', makeNewGrid);
 
 
 
