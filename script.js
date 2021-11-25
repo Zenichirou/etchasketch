@@ -5,9 +5,8 @@ const borderButton = document.getElementById('borderButton');
 const random = document.getElementById('random');
 const btnBlack = document.getElementById('btnBlack');
 const btnRed = document.getElementById('btnRed');
-let isBlack = 1;
-let isRainbow = 0;
-let gridSize = 20;
+const btnLight = document.getElementById('btnLight');
+let color = 'black';
 
 
 function resetGrid(){
@@ -57,6 +56,14 @@ function rainbowColor() {
 
 }
 
+function brightenColor(){
+    const gridBlocks = sketch.querySelectorAll('.grid-block');
+    btnLight.textContent = 'Lighten';
+    btnLight.addEventListener('click', () => {
+        brightenDefault(); 
+
+    })
+}
 
 
 
@@ -64,19 +71,21 @@ function blackDefault(){
     const gridBlocks = sketch.querySelectorAll('.grid-block');
     isBlack = 1;
     isRainbow = 0;
+    isLighten = 0;
     gridBlocks.forEach(gridBlock => gridBlock.addEventListener('mouseover', () => {
         console.log('is it doing anythingpls')
-        gridBlock.style.background = 'black';
-        
+        gridBlock.style.background = 'rgb(255,0,0)';
+        console.log(gridBlock.style.background)
     }));
-    return [isBlack, isRainbow];
+    return [isBlack, isRainbow,isLighten];
         
 }
 function defaultSetting(){
     isBlack = 1;
     isRainbow = 0;
+    isLighten = 0;
     console.log('the value has changed');
-    return [isBlack, isRainbow];
+    return [isBlack, isRainbow,isLighten];
 }
 //[isBlack, isRainbow] = defaultSetting();
 //[isBlack,isRainbow] = rainbowDefault();
@@ -86,6 +95,7 @@ function defaultSetting(){
 function rainbowDefault(){
     const gridBlocks = sketch.querySelectorAll('.grid-block');
     isRainbow = 1;
+    isLighten = 0;
     isBlack = 0;
     gridBlocks.forEach(gridBlock => gridBlock.addEventListener('mouseover', () => {
         let red = Math.floor(Math.random()* 255);
@@ -93,16 +103,29 @@ function rainbowDefault(){
         let blue = Math.floor(Math.random()* 255);
         gridBlock.style.background = `rgb(${red}, ${green}, ${blue})`
     }));
-        return [isRainbow, isBlack];
+        return [isRainbow, isBlack,isLighten];
 }
-
+function brightenDefault(){
+    const gridBlocks = sketch.querySelectorAll('.grid-block')
+    isRainbow = 0;
+    isBlack = 0;
+    isLighten = 1;
+    gridBlocks.forEach(gridBlock => gridBlock.addEventListener('mouseover', () =>{
+        gridBlock.classList.toggle('light-class');
+        console.log(isBlack,isRainbow,isLighten);
+    }))
+    return[isRainbow,isBlack,isLighten];
+}
 function checkColor(){
     if(isRainbow === 1){
         rainbowDefault();
+    }else if(isLighten === 1){
+        brightenDefault();
     }else{
         blackDefault();
     }
 }
 createGrid(16);
 rainbowColor();
+brightenColor();
 blackColor();

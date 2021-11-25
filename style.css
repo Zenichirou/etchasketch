@@ -22,11 +22,12 @@ body{
 
 }
 .grid-block{
-    background-color:white;
-    
-}
 
-}   
+}
+   
 .borders{
     border: 1px solid black;
+}
+.light-class{
+    filter:brightness(50%)
 }

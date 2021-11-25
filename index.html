@@ -10,9 +10,11 @@
     </header>
     <div id = "panelAndSketch">
         <div id = "panel">
-            <button  type = "button" id = "btnBlack">button</button>
-            <button type = 'button' onclick = 'resetGrid()'>Clear</button>
-            <button type = 'button' id = 'btnRed'>Random</button>
+            <button  type = "button" data-color = 'eraser' class = 'color-choice'>Eraser</button>
+            <button type = 'button' id = 'clearButton'>Clear</button>
+            <button type = 'button' data-color = 'rainbow' class = 'color-choice'>Random</button>
+            <button type = 'button' data-color = 'darken' class = 'color-choice'>Darken</button>
+            <button type = 'button' data-color = 'shade' class = 'color-choice'>Shade</button>
         </div>
         <div id = "sketch">
             
@@ -21,5 +23,5 @@
     <footer>
         <h3>Made with Russia from Love.</h3>
     </footer>
-    <script src = script.js></script>
+    <script src = refactoring.js></script>
 </body>
