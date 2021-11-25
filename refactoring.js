@@ -4,6 +4,7 @@ const clearButton = document.getElementById('clearButton');
 const userColorSelector = document.getElementById('color-select')
 const sliderLabel = document.getElementById('slider-label');
 const slider = document.getElementById('slider');
+const colorDefault = document.getElementById('colorDefault');
 let size = parseInt(window.getComputedStyle(sketch).width, 10);
 
 let color = 'rgb(44,44,44)';
@@ -33,7 +34,7 @@ function createGrid(gridSize){
     
     const gridBlocks = sketch.querySelectorAll('.grid-block');
     
-    gridBlocks.forEach(gridBlock => gridBlock.addEventListener('mouseenter', gridColor));
+    gridBlocks.forEach(gridBlock => gridBlock.addEventListener('mouseover', gridColor));
     
     
 
@@ -55,9 +56,8 @@ function gridColor(){
             const rgbLArray = (this.style.backgroundColor.replace(/ /g, '').slice(4,-1).split(','));
             this.style.backgroundColor = `rgb(${rgbLArray[0] - (rgbLArray[0] * 0.10)},${rgbLArray[1] - (rgbLArray[1] * 0.10)},${rgbLArray[2] - (rgbLArray[2] * 0.10)})`;
             break;
-        case 'darken':
-            const rgbDArray = (this.style.backgroundColor.replace(/ /g, '').slice(4,-1).split(','));
-            this.style.backgroundColor = `rgb(${rgbDArray[0] + (rgbDArray[0] * 0.1)},${rgbDArray[1] + (rgbDArray[1] * 0.1)},${rgbDArray[2] + (rgbDArray[2] * 0.1)})`;
+        case 'colorMode':
+            color = userColorSelector.value;
             break;
         case 'eraser':
             this.style.backgroundColor = 'rgb(255,255,255)';
@@ -76,8 +76,8 @@ function changeColor(event){
         case 'shade':
             color = 'shade';
             break;
-        case 'darken':
-            color = 'darken';
+        case 'colorMode':
+            color = 'colorMode';
             break;
         case 'eraser':
             color = 'eraser';
@@ -87,10 +87,35 @@ function changeColor(event){
             break;
     }
 }
+function toggleClass(event){
+    console.log(event.target.value);
+    switch(event.target.value){
+        case 'rainbow':
+            colorButtons.forEach(e => e.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            break;
+        case 'shade':
+            colorButtons.forEach(e => e.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            break;
+        case 'colorMode':
+            colorButtons.forEach(e => e.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            break;
+        case 'eraser':
+            colorButtons.forEach(e => e.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+}
+}
+function defaultColor(){
+    colorButtons.forEach(e => e.classList.remove('selected'));
+    colorDefault.classList.add('selected');
 
+}
 function userSelection(event){
     color = event.target.value;
 }
+
 function changeLabelSlider(event){
     sliderLabel.textContent = `${event.target.value} X ${event.target.value}`;
 }
@@ -106,9 +131,11 @@ function makeNewGrid(event){
 createGrid(16);
 
 
-
+colorButtons.forEach(colorButton => colorButton.addEventListener('click', toggleClass));
 colorButtons.forEach(colorButton => colorButton.addEventListener('click', changeColor) );
 clearButton.addEventListener('click', resetGrid);
+userColorSelector.addEventListener('click', defaultColor);
+userColorSelector.addEventListener('click', userSelection);
 userColorSelector.addEventListener('change', userSelection);
 userColorSelector.addEventListener('input', userSelection);
 slider.addEventListener('mouseup', changeLabelSlider);

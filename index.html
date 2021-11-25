@@ -3,22 +3,21 @@
     <title>Etch-a-Sketch</title>
     <meta charset = 'utf-8'>
     <link rel = 'stylesheet' href = 'style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Praise&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>Etch-a-Sketch</h1>
     </header>
     <div class = "panelAndSketch">
-        <div class = "panel">
-            <div class = 'color-card'>
-                <div class = 'input'>
-                    <input type = 'color' id = 'color-select' value = '#2C2C2C'>
-                </div>
-                <span>Pen Color</span>
-            </div>
-            <button  data-color = 'rainbow' class = 'color-choice buttons'>Rainbow</button>
-            <button  data-color = 'shade' class = 'color-choice buttons'>Shade</button>
-            <button   data-color = 'eraser' class = 'color-choice buttons'>Eraser</button>
+        <div class = "panel">   
+            <input type = 'color' id = 'color-select' value = '#2C2C2C' name = 'color'>
+            <button class = 'color-choice buttons' data-color = 'colorMode' value = 'colorMode' id = 'colorDefault'>Color Mode</button>
+            <button  data-color = 'rainbow' class = 'color-choice buttons' value = 'rainbow'>Rainbow</button>
+            <button  data-color = 'shade' class = 'color-choice buttons' value = 'shade'>Shade</button>
+            <button   data-color = 'eraser' class = 'color-choice buttons' value = 'shade'>Eraser</button>
             <button  id = 'clearButton' class = 'buttons'>Clear</button>
             <div class = 'gridSlider'>
                 <label id = 'slider-label' for = 'slider'>16 X 16</label>
@@ -30,7 +29,7 @@
         </div>
     </div>
     <footer>
-        <h3>Made with Russia from Love.</h3>
+        <h3>EZ.</h3>
     </footer>
     <script src = refactoring.js></script>
 </body>

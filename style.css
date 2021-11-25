@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-size:15px;
+    font-size:18px;
 }
 body{
     display:flex;
@@ -10,9 +10,9 @@ body{
     align-items:center;
     justify-content: space-evenly;
     min-height:100vh;
-    background-color:#CDCDCD;
+    background-color:#F8F8F8;
     color:#2C2C2C;
-    
+    font-family: 'Praise', cursive;
 }
 
 #sketch{
@@ -20,15 +20,10 @@ body{
     flex-wrap:wrap;
     width: 600px;
     max-height:600px;
-    
-    
-
 }
 
    
-.borders{
-    border: 1px solid black;
-}
+
 .light-class{
     filter:brightness(50%)
 }
@@ -36,9 +31,9 @@ body{
     display:flex;
     flex-direction:column;
     justify-content: space-between;
-    
+    align-items: center;
     padding:20px;
-    border:5px solid black;
+    
 
 }
 .panelAndSketch{
@@ -47,15 +42,22 @@ body{
     padding:15px;
 
 }
+
+
 .buttons{
-    padding:5px 50px;
+    padding:10px 50px;
     background-color: inherit;
-    border: 1px solid #2C2C2C;
+    border: 0.1px solid #2C2C2C;
     border-radius: 5px;
+    width:100%;
+    font-family:inherit;
+    cursor: pointer;
+    
 }
 .buttons:hover{
     transform: scale(1.05);
 }
+
 .gridStyles{
     box-shadow: 0 0 10px #696969;
 }
@@ -67,4 +69,33 @@ h1{
     flex-direction: column;
     align-items:center;
     gap:16px;
+    
+    width:100%;
+}
+#slider{
+    -webkit-appearance: none;
+    appearance: none;
+    opacity:0.7;
+    background: white;
+    width:100%;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    cursor:pointer;
+    border:1px solid #2C2C2C;
+    border-radius: 5px;
+}
+
+
+#color-select{
+    
+    width:80px;
+    height:80px;
+    border:none;
+}
+#color-select:hover{
+    transform: scale(1.1);
+}
+.selected{
+    background-color: #2C2C2C;
+    color:#F8F8F8;
 }
